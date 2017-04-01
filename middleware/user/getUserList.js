@@ -9,7 +9,12 @@ module.exports = function (objectRepository) {
   var userModel = requireOption(objectRepository, 'userModel');
 
   return function (req, res, next) {
-    next();
+    userModel.find({}, function (err, results) {
+      if (err) {
+        return next(err);
+      }
+      res.tpl.users = results;
+      return next();
+    });
   };
-
 };

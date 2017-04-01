@@ -8,20 +8,30 @@ var deleteKeyMW = require('../middleware/key/deleteKey');
 var renderMW = require('../middleware/generic/render');
 
 var keyModel = require('../models/key');
+var userModel = require('../models/user');
 
 module.exports = function (app) {
   var objectRepository = {
-    keyModel: keyModel
+    keyModel: keyModel,
+    userModel: userModel
   };
 
   /**
    * Edit the key details
    */
-  app.use('/keys/:keyid/edit',
+  app.get('/keys/:keyid/edit',
     authMW(objectRepository),
     getKeyByIdMW(objectRepository),
-    updateKeyMW(objectRepository),
-    renderMW(objectRepository, 'edit_key')
+    renderMW(objectRepository, 'editkey')
+  );
+
+  /**
+   * Edit the key details
+   */
+  app.post('/keys/:keyid/edit',
+    authMW(objectRepository),
+    getKeyByIdMW(objectRepository),
+    updateKeyMW(objectRepository)
   );
 
   /**
@@ -37,12 +47,19 @@ module.exports = function (app) {
   );
 
   /**
-   * Create a key
+   * Create a key GET
    */
-  app.use('/keys/new',
+  app.get('/keys/new',
     authMW(objectRepository),
-    updateKeyMW(objectRepository),
-    renderMW(objectRepository, 'edit_key')
+    renderMW(objectRepository, 'editkey')
+  );
+
+  /**
+   * Create a key POST
+   */
+  app.get('/keys/new',
+    authMW(objectRepository),
+    updateKeyMW(objectRepository)
   );
 
   /**

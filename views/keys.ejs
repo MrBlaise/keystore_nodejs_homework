@@ -1,0 +1,34 @@
+<%- include('header') %>
+
+
+<div class="container">
+
+    <%- include('navbar') %>
+    <%- include('errorbox') %>
+
+    <% keys.forEach(function(item){ %>
+        <div class="blaise-panel panel panel-default col-xs-12">
+            <div class="large-font col-xs-2" style="min-width: 110px;">
+                <i class="fa fa-key" aria-hidden="true"></i>
+            </div>
+
+            <div class="blaise-margin">
+                <div class="col-xs-10">
+                    <a href="/keys/<%= item.id %>"><%= item.name %></a>
+                </div>
+                <div class="col-xs-10">
+                    <%= item.email %>
+                </div>
+                <div class="col-xs-10">
+                    <%= item.fingerprint %>
+                </div>
+            </div>
+        </div>
+    <% }); %>
+
+    <div class="pull-right">
+        <a href="/keys/new" class="btn btn-primary btn-block">Add key</a>
+    </div>
+</div>
+
+<%- include('footer') %>

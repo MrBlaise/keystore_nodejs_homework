@@ -13,7 +13,10 @@ var UserInstanceMock = {
   id: '3fdd798e-21b7-4917-946c-fa154cc594d7',
   name: 'Gipsz Jakab',
   email: 'gipsz@jakab.hu',
-  pass: '12345678'
+  password: '12345678',
+  save: function (cb) {
+    return cb(null, this);
+  }
 };
 
 /**
@@ -22,7 +25,7 @@ var UserInstanceMock = {
  * @param cb error first callback
  * @returns {*}
  */
-User.prototype.findOne = function (criteria, cb) {
+User.findOne = function (criteria, cb) {
 
   //returns 1 mocked item
   return cb(null, UserInstanceMock);
@@ -34,7 +37,7 @@ User.prototype.findOne = function (criteria, cb) {
  * @param cb error first callback
  * @returns {*}
  */
-User.prototype.find = function (criteria, cb) {
+User.find = function (criteria, cb) {
 
   //returns 3 mocked item
   return cb(null, [UserInstanceMock, UserInstanceMock, UserInstanceMock]);

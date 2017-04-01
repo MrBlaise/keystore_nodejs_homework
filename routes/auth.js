@@ -3,6 +3,7 @@ var inverseAuthMW = require('../middleware/generic/inverseAuth');
 var checkUserLoginMW = require('../middleware/user/checkUserLogin');
 var checkUserRegistrationMW = require('../middleware/user/checkUserRegistration');
 var renderMW = require('../middleware/generic/render');
+var logOutMW = require('../middleware/generic/logout');
 
 var userModel = require('../models/user');
 
@@ -25,8 +26,19 @@ module.exports = function (app) {
   app.use('/log-in',
     inverseAuthMW(objectRepository),
     checkUserLoginMW(objectRepository),
-    renderMW(objectRepository, 'login')
+    renderMW(objectRepository, 'log-in')
   );
+
+  /**
+   * Log out
+   */
+  app.use('/log-out',
+    logOutMW(objectRepository),
+    function (req, res, next) {
+      return res.redirect('/log-in');
+    }
+  );
+
 
   /**
    * Sign-up page
@@ -34,7 +46,7 @@ module.exports = function (app) {
   app.use('/sign-up',
     inverseAuthMW(objectRepository),
     checkUserRegistrationMW(objectRepository),
-    renderMW(objectRepository, 'signup')
+    renderMW(objectRepository, 'sign-up')
   );
 
 };

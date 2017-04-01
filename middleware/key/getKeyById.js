@@ -10,7 +10,16 @@ module.exports = function (objectRepository) {
   var keyModel = requireOption(objectRepository, 'keyModel');
 
   return function (req, res, next) {
-    return next();
+
+    keyModel.findOne({
+      id: req.param.keyid
+    }, function (err, result) {
+      if ((err) || (!result)) {
+        return req.redirect('/keys');
+      }
+      res.tpl.key = result;
+      return next();
+    });
   };
 
 };

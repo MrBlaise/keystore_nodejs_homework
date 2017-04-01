@@ -6,8 +6,10 @@
  */
 module.exports = function (objectRepository) {
   return function (req, res, next) {
-    // TODO: change this when we have sessions according to the comment
-    return res.redirect('/log-in');
+    if (typeof req.session.userid === 'undefined') {
+      return res.redirect('/log-in');
+    } else {
+      return res.redirect('/keys');
+    }
   };
-
 };

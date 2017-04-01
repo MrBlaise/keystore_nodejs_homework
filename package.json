@@ -9,6 +9,10 @@
   "author": "Balazs Rostas - C00P7Q",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.15.0"
+    "body-parser": "^1.17.1",
+    "ejs": "^2.5.6",
+    "express": "^4.15.0",
+    "express-session": "^1.15.2",
+    "ssh-fingerprint": "0.0.1"
   }
 }

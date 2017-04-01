@@ -1,0 +1,56 @@
+<%- include('header') %>
+
+
+<div class="container">
+
+    <%- include('navbar') %>
+    <%- include('errorbox') %>
+
+    <form class="blaise-key-create" method="POST">
+        <h2>
+            <% if (locals.key) { %>
+                Edit key
+            <% } else { %>
+                Create Key
+            <% } %>
+        </h2>
+
+        <div class="form-group">
+            <label for="name">Key name</label>
+            <input type="text"
+                   id="name"
+                   name="name"
+                   class="form-control"
+                   placeholder="Key name"
+                   <% if(locals.key) {%> value="<%= key.name %>" <% } %>
+                   required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email"
+                   id="email"
+                   name="email"
+                   class="form-control"
+                   placeholder="Key email"
+                   <% if(locals.key) {%> value="<%= key.email %>" <% } %>
+                   required autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="key_text">Key text</label>
+            <textarea cols="40" rows="5"
+                      id="key_text"
+                      name="key_text"
+                      class="form-control"
+                      placeholder="Enter your key, starts with ssh-rsa"
+                      required><%if(locals.key){%><%= key.key_text %><%}%></textarea>
+        </div>
+
+        <div class="pull-right">
+            <input type="submit" class="btn btn-primary btn-block" value="Save">
+        </div>
+    </form>
+</div>
+
+<%- include('footer') %>

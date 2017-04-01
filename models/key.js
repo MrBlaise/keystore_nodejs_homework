@@ -1,9 +1,14 @@
+var fingerprint = require('ssh-fingerprint');
+
 /**
  * Key model (mock)
  * @constructor
  */
 var Key = function () {
 };
+
+var example_key_text = "ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQC8oMEkeBtvpSt0cbtefFS1xoiU3zyfkXTAhKZCAsMn00qisHV4Oq8FgboOTVJExZ+8pjt" +
+  "HYoNDcFhba2edwRb9ey0tMtoxPPTYKiyVsBwTQlu6VYm9g3IAzEeSoIXvr+BuGpGfiKccJj3txCqR/wvlSn2tYtVC4TVnfbTPfUrcoQ== mk@mk3";
 
 /**
  * An instance
@@ -14,7 +19,16 @@ var KeyInstanceMock = {
   user_id: '3fdd798e-21b7-4917-946c-fa154cc594d7',
   name: 'Key name',
   email: 'valaki@valami.hu',
-  key_text: 'ssh-rsa AAAAB3NzaC1yc2EAAAADAQABAAAAgQC8oMEkeBtvpSt0cbtefFS1xoiU3zyfkXTAhKZCAsMn00qisHV4Oq8FgboOTVJExZ+8pjtHYoNDcFhba2edwRb9ey0tMtoxPPTYKiyVsBwTQlu6VYm9g3IAzEeSoIXvr+BuGpGfiKccJj3txCqR/wvlSn2tYtVC4TVnfbTPfUrcoQ== mk@mk3'
+  key_text: example_key_text,
+  fingerprint: (function () {
+    return fingerprint(example_key_text)
+  })(),
+  remove: function (cb) {
+    return cb(null);
+  },
+  save: function (cb) {
+    return cb(null, this);
+  }
 };
 
 /**
@@ -23,7 +37,7 @@ var KeyInstanceMock = {
  * @param cb error first callback
  * @returns {*}
  */
-Key.prototype.findOne = function (criteria, cb) {
+Key.findOne = function (criteria, cb) {
 
   //returns 1 mocked item
   return cb(null, KeyInstanceMock);
@@ -35,7 +49,7 @@ Key.prototype.findOne = function (criteria, cb) {
  * @param cb error first callback
  * @returns {*}
  */
-Key.prototype.find = function (criteria, cb) {
+Key.find = function (criteria, cb) {
 
   //returns 3 mocked item
   return cb(null, [KeyInstanceMock, KeyInstanceMock, KeyInstanceMock]);

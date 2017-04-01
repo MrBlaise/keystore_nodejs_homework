@@ -9,7 +9,41 @@ module.exports = function (objectRepository) {
   var userModel = requireOption(objectRepository, 'userModel');
 
   return function (req, res, next) {
-    return next();
+
+    if (!req.body || !req.body.email || !req.body.password) {
+      return next();
+    }
+
+    userModel.findOne({
+      email: req.body.email
+    }, function (err, result) {
+
+      // TODO: change this after we use mongodb
+      // Right now we always get a user because of mocking
+      result = undefined;
+
+      if ((err) || (result)) {
+        res.tpl.error.push('This email address is already taken!');
+        return next();
+      }
+
+      if(req.body.password !== req.body.password2) {
+        res.tpl.error.push('The two passwords don\'t match!');
+        return next();
+      }
+
+      //create user
+      var newUser = new userModel();
+      newUser.email = req.body.email;
+      newUser.password = req.body.password;
+      newUser.save(function (err) {
+        if(!err) {
+          return res.redirect('/log-in');
+        } else {
+          next(err);
+        }
+      });
+    });
   };
 
 };

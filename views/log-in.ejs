@@ -1,0 +1,24 @@
+<%- include('header') %>
+
+<div class="container">
+    <%- include('errorbox') %>
+    <form class="blaise-form" method="POST">
+        <h2>Log in</h2>
+        <div class="form-group">
+            <label for="email">Email address</label>
+            <input type="email" name="email" id="email" class="form-control" placeholder="Email address" autofocus>
+        </div>
+
+        <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" name="password" id="password" class="form-control" placeholder="Password">
+        </div>
+        <input type="submit" class="btn btn-lg btn-primary btn-block" value="Log in">
+    </form>
+
+    <div class="text-center">
+        <a href="/sign-up">You haven't registered? Sign up!</a>
+    </div>
+</div>
+
+<%- include('footer') %>

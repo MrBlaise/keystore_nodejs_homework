@@ -8,7 +8,16 @@ module.exports = function (objectRepository) {
   var keyModel = requireOption(objectRepository, 'keyModel');
 
   return function (req, res, next) {
-    return next();
+    if (!res.tpl.key) {
+      return next();
+    }
+
+    req.tpl.key.remove(function (err) {
+      if(err) {
+        return next(err);
+      }
+      return next()
+    })
   };
 
 };
