@@ -1,0 +1,14 @@
+{
+  "name": "3_hazi",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Balazs Rostas - C00P7Q",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.15.0"
+  }
+}
