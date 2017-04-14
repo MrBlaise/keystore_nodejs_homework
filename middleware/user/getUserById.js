@@ -1,4 +1,5 @@
 var requireOption = require('../common').requireOption;
+var ObjectId = require('mongodb').ObjectId;
 
 /**
  * Load a user (if exists) with the :userid param
@@ -10,11 +11,11 @@ module.exports = function (objectRepository) {
 
   return function (req, res, next) {
 
-    if (!req.param.userid) {
+    if (!req.params.userid) {
       return next();
     }
 
-    userModel.findOne({id: req.param.userid}, function (err, result) {
+    userModel.findOne({_id: ObjectId(req.params.userid)}, function (err, result) {
       if (err) {
         return next(err);
       }

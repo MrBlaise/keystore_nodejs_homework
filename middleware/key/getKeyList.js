@@ -7,8 +7,10 @@ module.exports = function (objectRepository) {
 
   var keyModel = requireOption(objectRepository, 'keyModel');
 
+  // Only return the keys for this user
   return function (req, res, next) {
     keyModel.find({
+      user_id: req.session.userid
     }, function (err, result) {
       if (err) {
         next(err);

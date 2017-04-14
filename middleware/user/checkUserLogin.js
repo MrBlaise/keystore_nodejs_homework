@@ -29,7 +29,7 @@ module.exports = function (objectRepository) {
         return next();
       }
 
-      req.session.userid = result.id;
+      req.session.userid = result._id;
 
       return res.redirect('/');
     });

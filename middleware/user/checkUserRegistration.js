@@ -18,10 +18,6 @@ module.exports = function (objectRepository) {
       email: req.body.email
     }, function (err, result) {
 
-      // TODO: change this after we use mongodb
-      // Right now we always get a user because of mocking
-      result = undefined;
-
       if ((err) || (result)) {
         res.tpl.error.push('This email address is already taken!');
         return next();

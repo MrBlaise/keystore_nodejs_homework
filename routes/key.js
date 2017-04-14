@@ -57,7 +57,7 @@ module.exports = function (app) {
   /**
    * Create a key POST
    */
-  app.get('/keys/new',
+  app.post('/keys/new',
     authMW(objectRepository),
     updateKeyMW(objectRepository)
   );

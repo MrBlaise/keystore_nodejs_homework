@@ -20,13 +20,17 @@ module.exports = function (objectRepository) {
 
     if (!res.tpl.key) {
       res.tpl.key = new keyModel();
+    } else if (String(res.tpl.key.user_id) !== String(req.session.userid)) {
+      res.tpl.error.push('Insufficient permissions');
+      return next();
     }
+
 
     res.tpl.key.name = req.body.name;
     res.tpl.key.email = req.body.email;
     res.tpl.key.key_text = req.body.key_text;
-    res.tpl.key.fingerprint = fingerprint(req.body.key_text);
     res.tpl.key.user_id = req.session.userid;
+    res.tpl.key.fingerprint = fingerprint(req.body.key_text);
 
     res.tpl.key.save(function (err, result) {
       if(err) {
