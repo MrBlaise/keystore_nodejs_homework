@@ -21,7 +21,10 @@
                 </div>
                 <div class="col-xs-10">
                     <%= item.fingerprint %>
-                </div>
+                    <div class="pull-right">
+                        <a a href="/keys/<%= item._id %>/delete" class="btn btn-danger">Delete</a>
+                    </div>
+                </div>                
             </div>
         </div>
     <% }); %>

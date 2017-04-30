@@ -46,10 +46,17 @@
                       placeholder="Enter your key, starts with ssh-rsa"
                       required><%if(locals.key){%><%= key.key_text %><%}%></textarea>
         </div>
+        
+        <% if (locals.key) { %>
+            <div class="pull-right" style="margin-left: 10px;">
+                <a a href="/keys/<%= key._id %>/delete" class="btn btn-danger">Delete</a>
+            </div>
+        <% }  %> 
 
         <div class="pull-right">
             <input type="submit" class="btn btn-primary btn-block" value="Save">
         </div>
+       
     </form>
 </div>
 

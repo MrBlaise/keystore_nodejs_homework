@@ -12,7 +12,7 @@ module.exports = function (objectRepository) {
       return next();
     }
 
-    req.tpl.key.remove(function (err) {
+    res.tpl.key.remove(function (err) {
       if(err) {
         return next(err);
       }
