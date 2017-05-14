@@ -10,7 +10,7 @@ module.exports = function (objectRepository) {
 
   return function (req, res, next) {
 
-    if (!req.body || !req.body.email || !req.body.password) {
+    if (!req.body || !req.body.email || !req.body.password || !req.body.password2) {
       return next();
     }
 

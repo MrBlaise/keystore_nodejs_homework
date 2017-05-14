@@ -4,15 +4,17 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "mocha --recursive"
   },
   "author": "Balazs Rostas - C00P7Q",
   "license": "ISC",
   "dependencies": {
     "body-parser": "^1.17.1",
+    "chai": "^3.5.0",
     "ejs": "^2.5.6",
     "express": "^4.15.0",
     "express-session": "^1.15.2",
+    "mocha": "^3.3.0",
     "mongodb": "^2.2.25",
     "mongoose": "^4.9.4",
     "ssh-fingerprint": "0.0.1"
